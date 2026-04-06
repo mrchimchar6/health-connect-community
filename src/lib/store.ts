@@ -98,7 +98,10 @@ export function registerUser(data: z.infer<typeof registerSchema>): User {
   }
   const user: User = {
     id: crypto.randomUUID(),
-    ...data,
+    name: data.name,
+    email: data.email,
+    password: data.password,
+    role: data.role,
     createdAt: new Date().toISOString(),
   };
   users.push(user);
@@ -156,7 +159,10 @@ export function addEvent(data: z.infer<typeof eventSchema>, createdBy: string): 
   const events = getEvents();
   const ev: HealthEvent = {
     id: crypto.randomUUID(),
-    ...data,
+    title: data.title,
+    description: data.description,
+    date: data.date,
+    location: data.location,
     createdBy,
     registeredUsers: [],
   };
@@ -190,7 +196,11 @@ export function addDonationCamp(data: z.infer<typeof donationCampSchema>, create
   const camps = getDonationCamps();
   const camp: DonationCamp = {
     id: crypto.randomUUID(),
-    ...data,
+    title: data.title,
+    description: data.description,
+    date: data.date,
+    location: data.location,
+    type: data.type,
     createdBy,
     registeredUsers: [],
   };
